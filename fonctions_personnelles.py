@@ -15,20 +15,26 @@ import matplotlib.pyplot as plt
 
 
 
-def cellules_manquantes_pourcentage(data):
+def cellules_manquantes_pourcentage(data:pd.DataFrame):
     """Permet d'avoir un % de cellules manquantes
 
     Parameters
     -----------
     data: :class:`DataFrame`
-            DataFrame
+            DataFrame avec la colonne spécifiée
+    
+    Exemples:        
+    ----------
+    pourcentage_valeur_manquantes = cellules_manquantes_pourcentage(data[column])
     """
+    
     # Permet d'avoir un % de cellules manquantes
     return data.isna().sum().sum()/(data.size)
 
 
-def extraire_variables_imbriquees(df, colonne):
+def extraire_variables_imbriquees(df:pd.DataFrame, colonne:str):
     """Permet de développer les dictionnaires retenues dans une variable pour en faire des variables indépendantes
+    
 
     Parameters
     -----------
@@ -48,10 +54,12 @@ def extraire_variables_imbriquees(df, colonne):
     df = pd.concat([df.drop([colonne], axis=1), df[colonne].apply(pd.Series)], axis=1)
     return df
 
-def supprimer_variables_peu_utilisables(data, condition):
+def supprimer_variables_peu_utilisables(data:pd.DataFrame, condition:float):
     """Supprime les variables qui ont un nombre de données manquantes important. 
     
     On calcule en fonction d'un %.
+    
+    Fonctions "cellules_manquantes_pourcentage" requise !
 
     Parameters
     -----------
@@ -76,7 +84,7 @@ def supprimer_variables_peu_utilisables(data, condition):
     return data_filtree
 
 
-def valeur_unique(df):
+def valeur_unique(df:pd.DataFrame):
     """Permet de voir les valeurs uniques.
     
     Si moins de 20 valeurs, on les affiche. Sinon, affiche le nombre de valeurs uniques.
@@ -94,7 +102,7 @@ def valeur_unique(df):
             print('Colonne {}, {} valeurs uniques'.format(column, df[column].nunique()))
             
             
-def comparaisons_colonnes(list_1, list_2):
+def comparaisons_colonnes(list_1:list, list_2:list):
     """Compare les colonnes de deux listes, et renvoient celles qui ne sont pas présentes dans les deux fichiers.
 
     Parameters
@@ -123,7 +131,7 @@ def comparaisons_colonnes(list_1, list_2):
     return dif_list_1_list_2, dif_list_2_list_1
 
 
-def df_filtre_categorical(df):
+def df_filtre_categorical(df:pd.DataFrame):
     """Identifie dans un DataFrame les colonnes catégoriques.
 
     Parameters
@@ -144,7 +152,7 @@ def df_filtre_categorical(df):
     #retourne le nom des colonnes
     return categorical_columns
 
-def df_filtre_numerical(df):
+def df_filtre_numerical(df:pd.DataFrame):
     """Identifie dans un DataFrame les colonnes numériques.
 
     Parameters
@@ -164,7 +172,7 @@ def df_filtre_numerical(df):
 
     return numerical_columns
 
-def df_encodage_categorie(df, categorical_columns):
+def df_encodage_categorie(df:pd.DataFrame, categorical_columns:list):
     """Utilise un OneHotEncoding pour transformer les colonnes catégoriques
 
     Parameters
@@ -199,7 +207,7 @@ def df_encodage_categorie(df, categorical_columns):
     
     return ohe, df_ohe
 
-def df_scaling_numeric(df, numerical_columns):
+def df_scaling_numeric(df:pd.DataFrame, numerical_columns:list):
     """Standardise et normalise les données numériques avec un standardScaler
 
     Parameters
@@ -228,7 +236,7 @@ def df_scaling_numeric(df, numerical_columns):
 # liste_train = numerical_columns.tolist() + df_ohe.columns.values.tolist()
 # liste_features = list(numerical_columns) + list(ohe.get_feature_names_out(categorical_columns))
 
-def training_model_regression(df_train, Y_target, test_size=0.33, random_state=0):
+def training_model_regression(df_train:pd.DataFrame, Y_target:pd.DataFrame, test_size:float=0.33, random_state:int=0):
     """Teste plusieurs modèles de regression.
     
     Effectue un scoring / cross-validation / MAE / MSE / RMSE pour les algorithmes suivants :
