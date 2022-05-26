@@ -411,3 +411,31 @@ def training_model_regression(df_train:pd.DataFrame, Y_target:pd.DataFrame, test
 
 
 
+def feature_importance(model, classifier:str, index:list):
+    """Graphique Feature Importance
+
+    Parameters
+    -----------
+    model: :class:`Modele de regression`
+            Modèle de régression entrainé 
+            
+            Exemples :
+                model = XGBRegressor()
+                
+                model.fit(X_train, y_train)
+    classifier: :class:`str`
+            Nom du Modèle
+    index: :class:`Liste`
+            Liste des variables qui ont été utilisés dans l'algorithme
+            
+    Return
+    ----------
+    Graphique
+    """
+    df_features = pd.DataFrame(model.feature_importances_, index=index)
+    fig = px.histogram(x=df_features[0], y=df_features.index, color=df_features.index, title="Features importance " + str(classifier), width=1600, height=1400).update_yaxes(categoryorder="total ascending")
+    fig.update_layout(showlegend=False)
+    return fig
+
+
+
