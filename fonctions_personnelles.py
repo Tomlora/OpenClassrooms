@@ -13,7 +13,7 @@ from xgboost import XGBRegressor
 from sklearn import svm
 import matplotlib.pyplot as plt
 
-
+########################## - DataFrame
 
 def cellules_manquantes_pourcentage(data:pd.DataFrame):
     """Permet d'avoir un % de cellules manquantes
@@ -131,6 +131,9 @@ def comparaisons_colonnes(list_1:list, list_2:list):
     return dif_list_1_list_2, dif_list_2_list_1
 
 
+########################## - Préparation Dataframe pour prédiction
+
+
 def df_filtre_categorical(df:pd.DataFrame):
     """Identifie dans un DataFrame les colonnes catégoriques.
 
@@ -235,6 +238,10 @@ def df_scaling_numeric(df:pd.DataFrame, numerical_columns:list):
 # fusion des colonnes numériques et des colonnes onehotencoders
 # liste_train = numerical_columns.tolist() + df_ohe.columns.values.tolist()
 # liste_features = list(numerical_columns) + list(ohe.get_feature_names_out(categorical_columns))
+
+
+
+########################## - Entrainement prédiction
 
 def training_model_regression(df_train:pd.DataFrame, Y_target:pd.DataFrame, test_size:float=0.33, random_state:int=0):
     """Teste plusieurs modèles de regression.
@@ -409,6 +416,8 @@ def training_model_regression(df_train:pd.DataFrame, Y_target:pd.DataFrame, test
         
     return df_liste
 
+
+########################## - Graphique Prédiction
 
 
 def feature_importance(model, classifier:str, index:list):
