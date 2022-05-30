@@ -486,7 +486,7 @@ def correlation_independante_et_dependante(df:pd.DataFrame, colonne:str, title:s
         
 ############################# Pipeline
 
-
+# Variables du même type
 
 # Always scale the input. The most convenient way is to use a pipeline.
 # Si uniquement des variables numériques ici
@@ -498,7 +498,7 @@ clf = make_pipeline(StandardScaler(),
 
 # ---------------------------------------------------
 
-# dans le cas de traitement différent par colonne :
+# Variables de type différent et 1 seul traitement
 
 numerical_features = ['sepallength', 'sepalwidth']
 categorical_features = [...]
@@ -514,7 +514,7 @@ clf = make_pipeline(transformer,
 
 # -------------------------------------------------
 
-# encore plus avancé :
+#  Variable de type différent et plusieurs traitements
 
 numerical_features = ['sepallength', 'sepalwidth']
 categorical_features = [...]
@@ -536,7 +536,7 @@ clf = make_pipeline(preprocessor, SGDClassifier())
 
 # ----------------------------------------------------
 
-# encore plus avancé :
+# Prendre toutes les variables de type différent et plusieurs traitements
 
 
 
