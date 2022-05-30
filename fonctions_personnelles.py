@@ -7,12 +7,15 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 import plotly.express as px
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import cross_val_score, train_test_split, validation_curve
-from sklearn.linear_model import LinearRegression, Lasso, ElasticNet, Ridge
+from sklearn.linear_model import LinearRegression, Lasso, ElasticNet, Ridge, SGDClassifier
+from sklearn.impute import SimpleImputer
 import sklearn.metrics
 from xgboost import XGBRegressor
 from sklearn import svm
 import matplotlib.pyplot as plt
 import seaborn as sns
+from sklearn.pipeline import make_pipeline
+from sklearn.compose import make_column_selector, make_column_transformer
 
 ########################## - DataFrame
 
@@ -479,3 +482,85 @@ def correlation_independante_et_dependante(df:pd.DataFrame, colonne:str, title:s
         
         heatmap.set_title(title, fontdict={'fontsize':18}, pad=16);
         
+        
+        
+############################# Pipeline
+
+
+
+# Always scale the input. The most convenient way is to use a pipeline.
+
+clf = make_pipeline(StandardScaler(),
+                    SGDClassifier(max_iter=1000, tol=1e-3))
+
+# clf.fit(X_train, y_train)
+
+# ---------------------------------------------------
+
+# dans le cas de traitement différent par colonne :
+
+
+
+transformer = make_column_transformer((StandardScaler(), ['sepallength', 'sepalwidth']),
+                                      (SimpleImputer(strategy= 'most_frequent'), [...]))
+
+clf = make_pipeline(transformer,
+                    SGDClassifier(max_iter=1000, tol=1e-3))
+
+# clf.fit(X_train, y_train)
+
+
+# -------------------------------------------------
+
+# encore plus avancé :
+
+numerical_features = ['sepallength', 'sepalwidth']
+categorical_features = [...]
+
+
+numerical_pipeline = make_pipeline(SimpleImputer(),
+                                   StandardScaler())
+categorical_pipeline = make_pipeline(SimpleImputer(strategy = 'most_frequent'),
+                                   OneHotEncoder())
+
+
+preprocessor = make_column_transformer((numerical_pipeline, numerical_features),
+                        (categorical_pipeline, categorical_features))
+
+
+clf = make_pipeline(preprocessor, SGDClassifier())
+
+# clf.fit(X_trai, y_train)
+
+# ----------------------------------------------------
+
+# encore plus avancé :
+
+
+
+numerical_features = make_column_selector(dtype_include=np.number)
+categorical_features = make_column_selector(dtype_exclude=np.number)
+
+
+numerical_pipeline = make_pipeline(SimpleImputer(),
+                                   StandardScaler())
+categorical_pipeline = make_pipeline(SimpleImputer(strategy = 'most_frequent'),
+                                   OneHotEncoder())
+
+
+preprocessor = make_column_transformer((numerical_pipeline, numerical_features),
+                        (categorical_pipeline, categorical_features))
+
+
+clf = make_pipeline(preprocessor, SGDClassifier())
+
+# clf.fit(X_train, y_train)
+
+
+# -----------------------------------------------------
+
+# et après :
+
+# clf.score(X_test, y_test)
+# cross_validation = cross_val_score(clf, X_test, y_test, cv=5).mean()
+# clf.predict(iris_pipeline.drop(['class'], axis=1))
