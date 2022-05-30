@@ -489,6 +489,7 @@ def correlation_independante_et_dependante(df:pd.DataFrame, colonne:str, title:s
 
 
 # Always scale the input. The most convenient way is to use a pipeline.
+# Si uniquement des variables numériques ici
 
 clf = make_pipeline(StandardScaler(),
                     SGDClassifier(max_iter=1000, tol=1e-3))
@@ -499,10 +500,11 @@ clf = make_pipeline(StandardScaler(),
 
 # dans le cas de traitement différent par colonne :
 
+numerical_features = ['sepallength', 'sepalwidth']
+categorical_features = [...]
 
-
-transformer = make_column_transformer((StandardScaler(), ['sepallength', 'sepalwidth']),
-                                      (SimpleImputer(strategy= 'most_frequent'), [...]))
+transformer = make_column_transformer((StandardScaler(), numerical_features), # numerique
+                                      (SimpleImputer(strategy= 'most_frequent'), categorical_features)) # texte
 
 clf = make_pipeline(transformer,
                     SGDClassifier(max_iter=1000, tol=1e-3))
@@ -530,7 +532,7 @@ preprocessor = make_column_transformer((numerical_pipeline, numerical_features),
 
 clf = make_pipeline(preprocessor, SGDClassifier())
 
-# clf.fit(X_trai, y_train)
+# clf.fit(X_train, y_train)
 
 # ----------------------------------------------------
 
