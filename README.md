@@ -46,11 +46,11 @@ Le but du projet était de proposer une application innovante pour répondre à 
 
 ### Ressources (non-exhaustif) :
 - Pandas
-- Matplotlib (LineCollection)
+- __Matplotlib__ (LineCollection)
 - Missingno
-- Sklearn (PCA / KNNImputer / StandardScaler)
-- Pingouin pour le calcul de l'Anova
-- Ipywidgets pour la présentation du produit final
+- __Sklearn__ (PCA / KNNImputer / StandardScaler)
+- __Pingouin__ pour le calcul de l'Anova
+- __Ipywidgets__ pour la présentation du produit final
 
 ## Projet 4 : Anticipez les besoins en consommation électrique de batiments
 
@@ -66,12 +66,12 @@ Les données sont [disponibles ici](https://www.kaggle.com/city-of-seattle/sea-b
 ### Ressources (non-exhaustif) :
 - Pandas
 - Numpy
-- Sklearn (FunctionTransformer, validation_curve, cross_validation, OneHotEncoder, StandardScaler, svm)
-- Sklearn.linear_model (LinearRegression, Lasso, Ridge, ElasticNet)
-- Sklearn.metrics (mean_absolute_error, mean_squared_error)
+- __Sklearn__ (FunctionTransformer, validation_curve, cross_validation, OneHotEncoder, StandardScaler, svm)
+- __Sklearn.linear_model__ (LinearRegression, Lasso, Ridge, ElasticNet)
+- __Sklearn.metrics__ (mean_absolute_error, mean_squared_error)
 - Ast
-- Folium (map)
-- Optuna pour l'optimisation des paramètres
+- __Folium__ (map)
+- __Optuna__ pour l'optimisation des paramètres
 
 
 ## Projet 5 : Segmentez des clients d'un site e-commerce
@@ -89,7 +89,7 @@ Les données sont [disponibles ici](https://www.kaggle.com/olistbr/brazilian-eco
 ### Ressources (non-exhaustif):
 - Pandas
 - Numpy
-- Plotly.express & plotly.graph_objects
-- Sklearn.cluster (KMeans)
-- Sklearn.metrics (silhouette_samples, silhouette_score)
+- __Plotly.express__ & __plotly.graph_objects__
+- __Sklearn.cluster__ (KMeans)
+- __Sklearn.metrics__ (silhouette_samples, silhouette_score)
 - tqdm
