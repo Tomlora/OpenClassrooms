@@ -18,6 +18,15 @@ Le but du projet était de déterminer, pour une entreprise souhaitant mettre en
 - Maitriser les opérations fondamentales du langage Python pour la Data Science.
 
 
+### Ressources (non-exhaustif) :
+- Pandas
+- Numpy
+- Missingno
+- Plotly.express
+- Pygal
+- Seaborn
+
+
 ## Projet 3 : Concevez une application au service de la santé publique
 
 Nous disposions d'un jeu de données regroupant des produits alimentaires du monde entier, et divers variables [disponible ici](https://world.openfoodfacts.org/data/data-fields.txt)
@@ -35,6 +44,14 @@ Le but du projet était de proposer une application innovante pour répondre à 
 - Effectuer une analyse statistique univariée
 - Effectuer des opératirons de nettoyage sur des données structurées.
 
+### Ressources (non-exhaustif) :
+- Pandas
+- Matplotlib (LineCollection)
+- Missingno
+- Sklearn (PCA / KNNImputer / StandardScaler)
+- Pingouin pour le calcul de l'Anova
+- Ipywidgets pour la présentation du produit final
+
 ## Projet 4 : Anticipez les besoins en consommation électrique de batiments
 
 Le but du projet est de déterminer la consommation électrique et les émissions de C02 pour les batiments non destinés à l'habitation dans la ville de Seattle.
@@ -45,3 +62,34 @@ Les données sont [disponibles ici](https://www.kaggle.com/city-of-seattle/sea-b
 - Adapter les hyperparamètres d'un algorithme d'apprentissage supervisé afin de l'améliorer
 - Transformer les variables pertinentes d'un modèle d'apprentissage supervisé
 - Evaluer les performances d'un modèle d'apprentissage supervisé
+
+### Ressources (non-exhaustif) :
+- Pandas
+- Numpy
+- Sklearn (FunctionTransformer, validation_curve, cross_validation, OneHotEncoder, StandardScaler, svm)
+- Sklearn.linear_model (LinearRegression, Lasso, Ridge, ElasticNet)
+- Sklearn.metrics (mean_absolute_error, mean_squared_error)
+- Ast
+- Folium (map)
+- Optuna pour l'optimisation des paramètres
+
+
+## Projet 5 : Segmentez des clients d'un site e-commerce
+
+Le but du projet est d'aider une entreprise brésilienne qui propose une solution de vente sur les marketplaces en ligne.
+En effet, nous devons leur fournir une segmentation des clients qui pourront servir à des campagnes de publicités.
+Les données sont [disponibles ici](https://www.kaggle.com/olistbr/brazilian-ecommerce)
+
+### Compétences évaluées :
+- Mettre en place le modèle d'apprentissage non supervisé adapté au problème métier
+- Transformer les variables pertinentes d'un modèle d'apprentissage non supervisé
+- Adapter les hyperparamètres d'un algorithme non supervisé afin de l'améliorer
+- Evaluer les performances d'un modèle d'apprentissage non-supervisé
+
+### Ressources (non-exhaustif):
+- Pandas
+- Numpy
+- Plotly.express & plotly.graph_objects
+- Sklearn.cluster (KMeans)
+- Sklearn.metrics (silhouette_samples, silhouette_score)
+- tqdm
