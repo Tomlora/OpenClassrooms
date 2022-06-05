@@ -78,6 +78,7 @@ Les données sont [disponibles ici](https://www.kaggle.com/city-of-seattle/sea-b
 
 Le but du projet est d'aider une entreprise brésilienne qui propose une solution de vente sur les marketplaces en ligne.
 En effet, nous devons leur fournir une segmentation des clients qui pourront servir à des campagnes de publicités.
+
 Les données sont [disponibles ici](https://www.kaggle.com/olistbr/brazilian-ecommerce)
 
 ### Compétences évaluées :
