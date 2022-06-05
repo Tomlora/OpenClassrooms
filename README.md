@@ -1,5 +1,3 @@
-Note à moi-même : il faudrait un notebook non-clean (pour la démarche), et un notebook clean
-
 # Description des projets OpenClassrooms
 
 
