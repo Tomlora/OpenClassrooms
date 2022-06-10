@@ -6,8 +6,8 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 ########################## - Préparation Dataframe pour prédiction
 
 
-def df_filtre_categorical(df:pd.DataFrame):
-    """Identifie dans un DataFrame les colonnes catégoriques.
+def df_filtre_categorical_numerique(df:pd.DataFrame):
+    """Identifie dans un DataFrame les colonnes catégoriques/numeriques et les séparent
 
     Parameters
     -----------
@@ -17,34 +17,18 @@ def df_filtre_categorical(df:pd.DataFrame):
     Return
     ----------
     Liste des colonnes catégoriques
+    Liste des colonnes_numeriques
     
     Exemple
     ----------
-    categorical_columns = df_filtre_categorical(df)
+    categorical_columns, numerical_columns = df_filtre_categorical(df)
     """
     categorical_columns = df.select_dtypes(['object']).columns
-    #retourne le nom des colonnes
-    return categorical_columns
-
-def df_filtre_numerical(df:pd.DataFrame):
-    """Identifie dans un DataFrame les colonnes numériques.
-
-    Parameters
-    -----------
-    df: :class:`DataFrame`
-            Le DataFrame
-            
-    Return
-    ----------
-    Liste des colonnes numériques
-    
-    Exemple
-    ----------
-    numerical_columns = df_filtre_numerical(df)
-    """
     numerical_columns = df.select_dtypes(['int64', 'float64']).columns
+    
+    #retourne le nom des colonnes
+    return categorical_columns, numerical_columns
 
-    return numerical_columns
 
 def df_encodage_categorie(df:pd.DataFrame, categorical_columns:list):
     """Utilise un OneHotEncoding pour transformer les colonnes catégoriques
