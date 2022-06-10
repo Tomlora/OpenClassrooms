@@ -82,14 +82,21 @@ def df_scaling_numeric(df:pd.DataFrame, numerical_columns:list):
     Exemple
     ----------
     df[numerical_columns] = df_scaling_numeric(df, numerical_columns)
+    donnees_scalees = df_scaling_numeric(df, numerical_columns)
     """
     ss = StandardScaler()
     df[numerical_columns] = ss.fit_transform(df[numerical_columns])
     
-    # exemple : df[numerical_columns] = df_scaling_numeric(df, numerical_columns)
-
     return df[numerical_columns]
 
-# fusion des colonnes numériques et des colonnes onehotencoders
-# liste_train = numerical_columns.tolist() + df_ohe.columns.values.tolist()
-# liste_features = list(numerical_columns) + list(ohe.get_feature_names_out(categorical_columns))
+def fusion_ss_ohe(numerical_columns, df_ohe):
+    '''fusion des colonnes numériques et ohe
+    
+    Si ça ne marche pas, faire: 
+    
+    >>> liste_features = list(numerical_columns) + list(ohe.get_feature_names_out(categorical_columns))'''
+    liste_train = numerical_columns.tolist() + df_ohe.columns.values.tolist() 
+    return liste_train
+
+
+
