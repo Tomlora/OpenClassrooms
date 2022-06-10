@@ -8,7 +8,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import make_pipeline
 from sklearn.compose import make_column_selector, make_column_transformer
 
-import plotly.express as px
 
 
 
