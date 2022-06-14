@@ -3,12 +3,12 @@ import numpy as np
 
 import plotly.express as px
 
-from sklearn import svm
 import matplotlib.pyplot as plt
 
 from tqdm import tqdm
 import matplotlib.cm as cm
 import plotly.express as px
+from IPython.display import display  # permet de montrer un dataframe plutôt qu'un "tableau pas très joli" avec print
 
 from sklearn.cluster import KMeans
 from sklearn.metrics import silhouette_samples, silhouette_score
@@ -228,7 +228,7 @@ def silhouette_analyse(scaled_features):
     df_silhouette_score = pd.DataFrame([liste_clusters, average_score]).transpose()
     df_silhouette_score = df_silhouette_score.rename(columns={0: 'n_clusters', 1:'silhouette_score_avg'})
     df_silhouette_score.set_index('n_clusters', inplace=True)
-    print(df_silhouette_score)
+    display(df_silhouette_score)
 
     plt.show()
     
