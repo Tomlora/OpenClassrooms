@@ -90,5 +90,5 @@ Les données sont [disponibles ici](https://www.kaggle.com/olistbr/brazilian-eco
 - Numpy
 - __Plotly.express__ & __plotly.graph_objects__
 - __Sklearn.cluster__ (KMeans)
-- __Sklearn.metrics__ (silhouette_samples, silhouette_score)
-- tqdm
+- __Sklearn.metrics__ (silhouette_samples, silhouette_score, adjusted_rand_score)
+- __PCA__ / __TSNE__
