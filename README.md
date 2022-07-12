@@ -110,8 +110,9 @@ Notre rôle est de réaliser une étude de faisabilité d'un moteur de classific
 ### Ressources (non-exhaustif) :
 - Pandas
 - Numpy
-- NTLK (tokenize, stem, lemmatizer)
+- __Sklearn.cluster__ (KMeans)
+- __NTLK__ (tokenize, stem, lemmatizer)
 - Tensorflow
-- Keras (dont VGG16, VGG19, Resnetv50, InceptionV3 pour du transfert learning)
+- __Keras__ (Preprocessing / Layers / Metrics / Models / Applications (VGG16, VGG19, Resnetv50, InceptionV3 pour du transfert learning))
 - Torch
 
