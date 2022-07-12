@@ -92,3 +92,26 @@ Les données sont [disponibles ici](https://www.kaggle.com/olistbr/brazilian-eco
 - __Sklearn.cluster__ (KMeans)
 - __Sklearn.metrics__ (silhouette_samples, silhouette_score, adjusted_rand_score)
 - __PCA__ / __TSNE__
+
+
+## Projet 6 : Classifiez automatiquement des biens de consommation
+
+Le but du projet est d'aider une entreprise qui souhaite lancer une marketplace e-commerce.
+Afin d'y parvenir, elle souhaite automatiser l'attribution de la catégorie de chaque article.
+Notre rôle est de réaliser une étude de faisabilité d'un moteur de classification d'articles, en se basant sur une image et une description.
+
+### Compétences évaluées :
+
+- Prétraiter des données textes pour obtenir un jeu de données exploitable
+- Prétraiter des données image pour obtenir un jeu de données exploitable
+- Représenter graphiquement des données à grandes dimensions
+- Mettre en oeuvre des techniques de réduction de dimension
+
+### Ressources (non-exhaustif) :
+- Pandas
+- Numpy
+- NTLK (tokenize, stem, lemmatizer)
+- Tensorflow
+- Keras (dont VGG16, VGG19, Resnetv50, InceptionV3 pour du transfert learning)
+- Torch
+
