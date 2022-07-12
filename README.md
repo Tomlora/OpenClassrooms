@@ -97,7 +97,9 @@ Les données sont [disponibles ici](https://www.kaggle.com/olistbr/brazilian-eco
 ## Projet 6 : Classifiez automatiquement des biens de consommation
 
 Le but du projet est d'aider une entreprise qui souhaite lancer une marketplace e-commerce.
+
 Afin d'y parvenir, elle souhaite automatiser l'attribution de la catégorie de chaque article.
+
 Notre rôle est de réaliser une étude de faisabilité d'un moteur de classification d'articles, en se basant sur une image et une description.
 
 ### Compétences évaluées :
