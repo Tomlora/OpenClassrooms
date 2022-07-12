@@ -127,6 +127,6 @@ Notre rôle est de réaliser une étude de faisabilité d'un moteur de classific
 - __NTLK__ (tokenize, stem, lemmatizer, stopwords)
 - __Tensorflow__ (BERT, USE)
 - __Keras__ (Preprocessing / Layers / Metrics / Models / Applications (VGG16, VGG19, Resnetv50, InceptionV3 pour du transfert learning))
-- pyLDAvis (algorithme pour identifier des thèmes et les mots clés de chaque thème)
+- pyLDAvis (algorithme pour identifier des thèmes et les mots clés de chaque thème dans un corpus de texte)
 - Torch
 
