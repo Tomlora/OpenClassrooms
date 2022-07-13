@@ -8,13 +8,15 @@ from sklearn import preprocessing
 from rich.console import Console
 
 class ACP_kevin():
-    def __init__(self, colonne=None, dataframe=None):
+    def __init__(self, colonne=None, dataframe = None):
         """ Class ACP
         
         Parameters
         ------------
         
-        Colonne du dataframe avec les données à ACP
+        Colonne(s) du dataframe avec les données à ACP 
+        
+        Eventuellement le dataframe s'il y a plusieurs colonnes
         
         Return
         ------------
@@ -30,10 +32,10 @@ class ACP_kevin():
         x_scaled = transform StandardScaler
         
         """
-        if colonne != None:
-            self.data = colonne
-        else:
+        if isinstance(dataframe, pd.DataFrame):
             self.data = dataframe[colonne]
+        else:
+            self.data = colonne
         self.n = self.data.shape[0]
         self.p = self.data.shape[1]
         self.std_scale = preprocessing.StandardScaler().fit(self.data.values)
@@ -71,38 +73,6 @@ class ACP_kevin():
         
         # calcul composantes principales
         
-    def optimisation_acp(self, n_comp = None):
-        """ avec le nombre de composantes retenues via scree_plot_acp
-        
-        Parameters
-        -------------
-        
-        n_comp (par défault, le maximum)
-        
-        Return
-        -------------
-        
-        pca_opti = pca avec nombre de composants retenus
-        
-        pcs = Principal axes in feature space, representing the directions of maximum variance in the data.
-    
-        X_projected = valeurs des composants
-        
-        """
-        if n_comp == None:
-            self.n_comp_opti = self.n_comp
-        
-        self.pca_opti = PCA(n_components=self.n_comp_opti)
-        self.pca_opti.fit(self.X_scaled)
-        self.pcs = self.pca_opti.components_
-        self.X_projected = self.pca_opti.transform(self.X_scaled)
-        
-        console = Console()
-        
-        console.print(f'ACP optimisé', style="green")
-            
-   
-        
 
     def scree_plot_acp(self):
         ''' Détermine le meilleur nombre de composants à prendre
@@ -136,6 +106,36 @@ class ACP_kevin():
         axes[1].set_ylabel("Cumsum explained variance ratio")
         axes[1].set_xlabel("Factor number")
         plt.show()
+        
+    def optimisation_acp(self, n_comp = None):
+        """ avec le nombre de composantes retenues via scree_plot_acp
+        
+        Parameters
+        -------------
+        
+        n_comp (par défault, le maximum)
+        
+        Return
+        -------------
+        
+        pca_opti = pca avec nombre de composants retenus
+        
+        pcs = Principal axes in feature space, representing the directions of maximum variance in the data.
+    
+        X_projected = valeurs des composants
+        
+        """
+        if n_comp == None:
+            self.n_comp_opti = self.n_comp
+        
+        self.pca_opti = PCA(n_components=self.n_comp_opti)
+        self.pca_opti.fit(self.X_scaled)
+        self.pcs = self.pca_opti.components_
+        self.X_projected = self.pca_opti.transform(self.X_scaled)
+        
+        console = Console()
+        
+        console.print(f'ACP optimisé', style="green")
         
         
     def cercle_correlation_acp(self, axis_ranks, labels=None, label_rotation=0, lims=None):
