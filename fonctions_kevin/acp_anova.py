@@ -244,7 +244,7 @@ class ACP_kevin():
                     plt.legend()
 
 
-def anova(X, Y, data):
+def anova(data, X, Y):
     '''
     Permet d'étudier l'effet des variables qualitatives sur une variable quantitative.
     L’ANOVA sert concrètement à mettre en lumière l’existence d’une interaction entre ces facteurs de variabilité et la variable quantitative principale étudiée

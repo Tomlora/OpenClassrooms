@@ -160,7 +160,7 @@ def transform_word(desc_text, type: str, liste_perso:bool=True):
     Parameters
     ----------
 
-    desc_text :class:`Series`
+    desc_text :class:`Series` : le "x"
 
     type :class:`Choix` : 
         - "classique" = stopword + lower -> Utilisable pour bag of word (countvectorize/tf_idf/word2vec)
@@ -208,7 +208,7 @@ def transform_word(desc_text, type: str, liste_perso:bool=True):
     
     # liste personnalisée
     
-    stop_perso = ['shipping', 'flipkart']
+    stop_perso = ['shipping', 'flipkart'] # à modifier
     
     def stop_word_filter_fct(list_words, liste_perso:bool=True):
         """
@@ -428,12 +428,7 @@ def feature_BERT_fct(model, model_type, sentences, max_length=64, b_size=10, mod
     >>> bert_layer = hub.KerasLayer(model_url, trainable=True)
     
     import pytorch pour utiliser le gpu
-    
-    Verification :
-    >>> print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
-    >>> print(torch.cuda.is_available())
-    >>> print(torch.cuda.device_count())
-    >>> print(torch.cuda.get_device_name(0)) 
+
 
     Return
     -----------
@@ -449,12 +444,6 @@ def feature_BERT_fct(model, model_type, sentences, max_length=64, b_size=10, mod
         Source : https://huggingface.co/docs/transformers/v4.20.1/en/internal/tokenization_utils#transformers.PreTrainedTokenizerBase.encode_plus
 
         import pytorch pour utiliser le gpu
-
-        Verification :
-        >>> print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
-        >>> print(torch.cuda.is_available())
-        >>> print(torch.cuda.device_count())
-        >>> print(torch.cuda.get_device_name(0))    
 
         Parameters
         ----------
@@ -592,6 +581,11 @@ class LDA():
         data :class:`DataFrame`
 
         colonne : :class:`Series`: Données lemmatizer
+        
+        Return
+        ----------
+        
+        sentences = liste de lower mots
         """
         self.data = data
         self.colonne = colonne
@@ -826,6 +820,9 @@ class Word2vec():
         print(self.embed_model.summary())
 
     def predict(self):
+        """Return
+        -----------
+        embeddings = modele final avec les features"""
         self.embeddings = self.embed_model.predict(self.x_sentences)
         print(self.embeddings.shape)
         console = Console()
