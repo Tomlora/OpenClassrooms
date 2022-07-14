@@ -131,4 +131,5 @@ Notre rôle est de réaliser une étude de faisabilité d'un moteur de classific
 - PCA / TSNE
 - __OpenCV__ (pour SIFT)
 - Torch
+- __Pillow__ (Faire une visualisation des images du T-SNE)
 
