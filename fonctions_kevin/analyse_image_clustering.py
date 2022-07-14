@@ -562,12 +562,12 @@ def tsne_image(X_tsne, path_img, list_photos, num_images_to_plot=1000, width=400
     for img, x, y in zip(images, tx, ty):
         tile = Image.open(img)
         rs = max(1, tile.width/max_dim, tile.height/max_dim)
-        tile = tile.resize((int(tile.width/rs), int(tile.height/rs)), Image.ANTIALIAS)
+        tile = tile.resize((int(tile.width/rs), int(tile.height/rs)), Image.Resampling.LANCZOS)
         full_image.paste(tile, (int((width-max_dim)*x), int((height-max_dim)*y)), mask=tile.convert('RGBA'))
 
     
     plt.figure(figsize = (16,12))
-    # full_image = full_image.transpose(method=Image.FLIP_TOP_BOTTOM)
+    full_image = full_image.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
     plt.imshow(full_image)
     
     
@@ -616,9 +616,9 @@ def tsne_grid(X_tsne, path_img, list_photos, nbrow, nbcol, row_width, row_height
         else:
             margin = 0.5 * (tile.height - float(tile.width) / aspect_ratio)
             tile = tile.crop((0, margin, tile.width, margin + float(tile.width) / aspect_ratio))
-        tile = tile.resize((row_width, row_height), Image.ANTIALIAS)
+        tile = tile.resize((row_width, row_height), Image.Resampling.LANCZOS)
         grid_image.paste(tile, (int(x), int(y)))
 
     plt.figure(figsize = (16,12))
-    # grid_image = grid_image.transpose(method=Image.FLIP_TOP_BOTTOM)
+    grid_image = grid_image.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
     plt.imshow(grid_image)
