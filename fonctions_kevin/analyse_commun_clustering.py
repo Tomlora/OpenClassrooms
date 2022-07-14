@@ -11,7 +11,7 @@ from rich.console import Console
 from matplotlib.image import imread
 
 import numpy as np
-
+import umap.umap_ as umap
 
 
 from sklearn.metrics import confusion_matrix
@@ -91,7 +91,7 @@ def preparation_variable_clustering(df, colonne):
 # Calcul Tsne, détermination des clusters et calcul ARI entre vrais catégorie et n° de clusters
 
 
-def ARI_fct(features, l_cat, y_cat_num, perplexity=30, learning_rate=200, tsne:bool=True):
+def ARI_fct(features, l_cat, y_cat_num, perplexity=30, learning_rate=200, tsne:bool=True, r_umap:bool=False):
     """
     Calcul Tsne, détermination des clusters et calcul ARI entre vrais catégorie et n° de clusters
 
@@ -105,7 +105,8 @@ def ARI_fct(features, l_cat, y_cat_num, perplexity=30, learning_rate=200, tsne:b
     y_cat_num : :class:`List` : Liste avec les valeurs transformées en nombre. Nécessaire pour comparaison Kmeans et réelles (ARI)
     
     tsne : :class:`bool` : (True par defaut) Applique un TSNE ou non 
-
+    
+    r_umap : :class:`bool` : (False par defaut) : Applique un Umap ou non (incompatible avec TSNE)
 
     """
 
@@ -115,6 +116,9 @@ def ARI_fct(features, l_cat, y_cat_num, perplexity=30, learning_rate=200, tsne:b
         tsne = manifold.TSNE(n_components=2, perplexity=perplexity, n_iter=2000,
                             init='random', learning_rate=learning_rate, random_state=42)
         X_tsne = tsne.fit_transform(features)
+    elif r_umap is True:
+        reducer = umap.UMAP(n_components=2)
+        X_tsne = reducer.fit_transform(features)
     else:
         X_tsne = features
 

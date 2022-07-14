@@ -532,3 +532,93 @@ class TransfertLearning():
         
         self.pca = decomposition.PCA(n_components=n_components)
         self.features_pca = self.pca.fit_transform(self.features)
+        
+        
+import random
+from PIL import Image
+
+def tsne_image(X_tsne, path_img, list_photos, num_images_to_plot=1000, width=4000, height=3500, max_dim=100):
+    """Affiche le TSNE sous forme d'image
+    
+    Parameters
+    -----------
+    X_tsne = features TSNE
+    path_img = dossier img
+    list_photos = liste des photos
+    num_images_to_plot (defaut 1000) = nombre d'images à plot
+
+    Src : https://nextjournal.com/ml4a/image-t-sne """
+
+    if len(list_photos) > num_images_to_plot:
+        sort_order = sorted(random.sample(range(len(list_photos)), num_images_to_plot))
+        images = [path_img + list_photos[i] for i in sort_order]
+        X_tsne = X_tsne[0:num_images_to_plot]
+        
+    tx,ty = X_tsne[:,0], X_tsne[:,1]
+    tx = (tx-np.min(tx)) / (np.max(tx) - np.min(tx))
+    ty = (ty-np.min(ty)) / (np.max(ty) - np.min(ty))
+
+    full_image = Image.new('RGBA', (width, height))
+    for img, x, y in zip(images, tx, ty):
+        tile = Image.open(img)
+        rs = max(1, tile.width/max_dim, tile.height/max_dim)
+        tile = tile.resize((int(tile.width/rs), int(tile.height/rs)), Image.ANTIALIAS)
+        full_image.paste(tile, (int((width-max_dim)*x), int((height-max_dim)*y)), mask=tile.convert('RGBA'))
+
+    
+    plt.figure(figsize = (16,12))
+    # full_image = full_image.transpose(method=Image.FLIP_TOP_BOTTOM)
+    plt.imshow(full_image)
+    
+    
+import rasterfairy
+
+def tsne_grid(X_tsne, path_img, list_photos, nbrow, nbcol, row_width, row_height, num_images_to_plot=1000):
+    """Affiche le TSNE sous forme d'image
+    
+    Parameters
+    -----------
+    X_tsne = features TSNE
+    path_img = dossier img
+    list_photos = liste des photos
+    nbrow = Nb ligne dans le grid
+    nbcol = Nbcol dans le grid
+    row_width = longueur row
+    row_height = hauteur row
+    num_images_to_plot (defaut 1000) = nombre d'images à plot
+
+    Src : https://nextjournal.com/ml4a/image-t-sne """
+    
+    
+    
+    if len(list_photos) > num_images_to_plot:
+        sort_order = sorted(random.sample(range(len(list_photos)), num_images_to_plot))
+        images = [path_img + list_photos[i] for i in sort_order]
+        X_tsne = X_tsne[0:num_images_to_plot]
+
+    # assign to grid
+    grid_assignment = rasterfairy.transformPointCloud2D(X_tsne, target=(nbrow, nbcol))
+    
+    full_width = row_width * nbrow
+    full_height = row_height * nbcol
+    aspect_ratio = float(row_width) / row_height
+
+    grid_image = Image.new('RGB', (full_width, full_height))
+
+    for img, grid_pos in zip(images, grid_assignment[0]):
+        idx_x, idx_y = grid_pos
+        x, y = row_width * idx_x, row_height * idx_y
+        tile = Image.open(img)
+        tile_ar = float(tile.width) / tile.height  # center-crop the tile to match aspect_ratio
+        if (tile_ar > aspect_ratio):
+            margin = 0.5 * (tile.width - aspect_ratio * tile.height)
+            tile = tile.crop((margin, 0, margin + aspect_ratio * tile.height, tile.height))
+        else:
+            margin = 0.5 * (tile.height - float(tile.width) / aspect_ratio)
+            tile = tile.crop((0, margin, tile.width, margin + float(tile.width) / aspect_ratio))
+        tile = tile.resize((row_width, row_height), Image.ANTIALIAS)
+        grid_image.paste(tile, (int(x), int(y)))
+
+    plt.figure(figsize = (16,12))
+    # grid_image = grid_image.transpose(method=Image.FLIP_TOP_BOTTOM)
+    plt.imshow(grid_image)
