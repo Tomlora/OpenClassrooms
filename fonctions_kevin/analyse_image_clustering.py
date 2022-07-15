@@ -563,6 +563,7 @@ def tsne_image(X_tsne, path_img, list_photos, num_images_to_plot=1000, width=400
         tile = Image.open(img)
         rs = max(1, tile.width/max_dim, tile.height/max_dim)
         tile = tile.resize((int(tile.width/rs), int(tile.height/rs)), Image.Resampling.LANCZOS)
+        tile = tile.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
         full_image.paste(tile, (int((width-max_dim)*x), int((height-max_dim)*y)), mask=tile.convert('RGBA'))
 
     
@@ -617,6 +618,7 @@ def tsne_grid(X_tsne, path_img, list_photos, nbrow, nbcol, row_width, row_height
             margin = 0.5 * (tile.height - float(tile.width) / aspect_ratio)
             tile = tile.crop((0, margin, tile.width, margin + float(tile.width) / aspect_ratio))
         tile = tile.resize((row_width, row_height), Image.Resampling.LANCZOS)
+        tile = tile.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
         grid_image.paste(tile, (int(x), int(y)))
 
     plt.figure(figsize = (16,12))
