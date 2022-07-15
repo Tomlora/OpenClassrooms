@@ -184,7 +184,7 @@ def TSNE_visu_fct(X_tsne, l_cat, y_cat_num, labels, ARI):
     js = [e[1] for e in sorted(indexes, key=lambda x: x[0])]
     cm2 = cm[:, js]
     
-    s = sns.heatmap(cm2, annot=True, fmt="d", cmap="Blues")
+    s = sns.heatmap(cm2, annot=True, yticklabels=l_cat, fmt="d", cmap="Blues")
     s.set(xlabel="Kmeans label", ylabel="Truth label")
     
     plt.show()
