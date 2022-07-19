@@ -287,7 +287,7 @@ class SIFT():
         
         console = Console()
         console.print(f"Dimensions dataset avant réduction PCA : {self.im_features.shape}", style="purple")
-        self.pca = decomposition.PCA(n_components=n_components)
+        self.pca = decomposition.PCA(n_components=n_components, random_state=42)
         self.feat_pca= self.pca.fit_transform(self.im_features)
         console.print(f"Dimensions dataset après réduction PCA : {self.feat_pca.shape}", style="green")
         
@@ -530,7 +530,7 @@ class TransfertLearning():
         console = Console()
         console.print(f'Nouvelles dimensions : {self.features.shape}') 
         
-        self.pca = decomposition.PCA(n_components=n_components)
+        self.pca = decomposition.PCA(n_components=n_components, random_state=42)
         self.features_pca = self.pca.fit_transform(self.features)
         
         
